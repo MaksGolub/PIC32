@@ -1,5 +1,5 @@
 TARGET := main
-DEPS:= UART init
+DEPS:= user OLED SPI OledChar FillPat OledGrph ChrFont0 ff ffsystem ffunicode mmcpic32
 MCU := 32MZ2048EFG100
 
 MDB := mdb -l OFF
@@ -9,8 +9,8 @@ CFLAGS = -O2 -std=gnu11
 # not c11 
 .PHONY: all size flash clean compile hex
 
-compile: $(TARGET).c
-	$(CC) $(CFLAGS) $(addsuffix .c,$(DEPS)) $< -o $(subst .c,.elf,$<)
+compile: $(TARGET).c 
+	$(CC) $(CFLAGS) $(addsuffix .c,$(DEPS)) pic32_init_cache.S $< -o $(subst .c,.elf,$<)
 	
 	
 hex: $(TARGET:=.elf)	

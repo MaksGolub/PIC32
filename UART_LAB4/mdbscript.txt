@@ -1,0 +1,7 @@
+device PIC32MZ2048EFG100
+set programoptions.eraseb4program true
+set poweroptions.powerenable false
+hwtool PICkit3 -p
+program main.hex
+reset MCLR
+quit
